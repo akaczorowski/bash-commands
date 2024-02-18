@@ -1,0 +1,15 @@
+
+
+
+############### Android signed apk analyze
+
+keytool.exe -list -v -keystore .\notespot-keystore.jks
+
+cd C:\Users\<user>\AppData\Local\Android\Sdk\build-tools\34.0.0
+
+apksigner verify --print-certs my_app.apk
+
+// compare printed certs sha256 if certs are the same
+
+
+####################
