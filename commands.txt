@@ -12,4 +12,7 @@ apksigner verify --print-certs my_app.apk
 // compare printed certs sha256 if certs are the same
 
 
-####################
+
+#################### Find apk in folder and print certs
+
+find . -name "*.apk" -exec echo "APK: {}" \; -exec sh -c 'keytool -printcert -jarfile "{}" | grep SHA1' \;
