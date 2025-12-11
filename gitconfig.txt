@@ -1,6 +1,6 @@
 [user]
-	name = Arkadiusz Kaczorowski
-	email = arkadiusz.kaczorowski@brainly.com
+	name = xxx
+	email = xxx@xxx.com
 
 ###### my custom config for git command line
 ###### git config --global push.autoSetupRemote true
