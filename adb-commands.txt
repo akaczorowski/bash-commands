@@ -1,0 +1,29 @@
+
+
+
+########### CERTS  https://developer.android.com/studio/command-line/apksigner.html
+
+/Library/Android/sdk/build-tools/32.1.0-rc1:  ./apksigner verify --print-certs ~/Downloads/marsflowenabledapk.apk
+
+## somtime does not work/report correctly
+jarsigner -verify -verbose -certs my_application.apk
+
+
+## verify app link/deep link https://developer.android.com/training/app-links/verify-android-applinks#invoke-domain-verification
+## https://developer.android.com/training/app-links/verify-android-applinks
+## Brianly config:  https://brainly.com/.well-known/assetlinks.json
+adb shell pm verify-app-links --re-verify PACKAGE_NAME
+
+## test deep links https://developer.android.com/training/app-links/deep-linking#testing-filters
+## related issue: https://brainly.atlassian.net/browse/MOBP-8172?focusedCommentId=150713
+adb shell am start -W -a android.intent.action.VIEW -d "https://brainly.com/question/30759786?utm_source=android&utm_medium=share&utm_campaign=question"
+
+## test deep links - Use the following command to check whether the system verified your app and set the correct link handling policies
+## https://developer.android.com/training/app-links/verify-android-applinks#auto-verification
+adb shell am start -a android.intent.action.VIEW  -c android.intent.category.BROWSABLE -d "https://brainly.com/question/30759786?utm_source=android&utm_medium=share&utm_campaign=question"
+
+
+## ADB logcat
+Google Analytics 12.4.51 is starting up. To enable debug logging on a device run:
+    adb shell setprop log.tag.GAv4 DEBUG
+    adb logcat -s GAv4

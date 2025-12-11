@@ -1,0 +1,2 @@
+### FFMPEG covert to GIF
+ffmpeg -i home-screen.mov -s 420x931 -pix_fmt rgb24 -r 10 -f gif home-out.gif

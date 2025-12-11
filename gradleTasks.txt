@@ -1,0 +1,49 @@
+############## dependecies tree https://stackoverflow.com/a/39020703
+
+./gradlew app:dependencies --configuration rcRuntimeClasspath > deps.txt  
+
+
+
+# https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html
+
+./gradlew app:dependencyInsight --configuration rcRuntimeClasspath --dependency com.google.android.material:material > depsInsight.txt
+
+./gradlew app:dependencyInsight --configuration rcRuntimeClasspath --dependency androidx.activity:activity > depsInsight.txt
+
+
+
+####
+./gradlew clean app:assDeb --no-build-cache --rerun-tasks
+
+adb shell dumpsys package co.brainly.codete | grep -i  activity | awk 'NF{NF-=1};1' |  sort |  uniq
+
+
+
+###
+./gradlew --status
+./gradlew --stop
+
+./gradlew cleanTest
+./gradlew test -x testReleaseUnitTest -x testBetaUnitTest -x testRcUnitTest
+
+###
+
+
+
+##############
+
+./gradlew :app:lintRelease
+
+./gradlew lintRelease
+
+
+
+################
+./gradlew app:assembleBeta  
+./gradlew app:assembleBeta -PdisableAbTests=true -PdisableMathSolverWebViewForAutomation=true -PdisableImageKeysInMathSolverEditViewForAutomation=true -PmockInstantAnswerForAutomation=true
+
+./gradlew app:assembleRc  
+
+./gradlew clean app:assDeb --no-build-cache
+
+./gradlew clean app:assDeb --no-build-cache --rerun-tasks

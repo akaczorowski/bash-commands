@@ -1,0 +1,5 @@
+
+
+# replace docs eg /** ... */
+# ? - is added for non-greedy regex
+\/\*\*[\p{ASCII}\p{Space}]*?\*\/

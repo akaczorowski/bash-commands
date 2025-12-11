@@ -1,0 +1,40 @@
+
+
+################################
+
+#!/bin/bash
+
+mkdir -p ~/.gradle/
+touch ~/.gradle/gradle.properties
+
+echo "" >> ~/.gradle/gradle.properties
+
+if ! grep -q "Username" ~/.gradle/gradle.properties; then
+    echo "Username=tmp" >> ~/.gradle/gradle.properties
+fi
+
+if ! grep -q "Password" ~/.gradle/gradle.properties; then
+    echo "Password=tmp" >> ~/.gradle/gradle.properties
+fi
+
+##################################
+
+
+find ~/.gradle -type f -name "*.lock" | while read f; do rm $f; done
+
+##################################
+
+
+curl --location 'https://serverABD.net/api/v1/us/search' \
+--header 'X-Request-Id: test-1-2-3-4' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data '{
+  "query": {
+    "text":"Who was Napeoloen"
+  },
+  "context": {
+    "scenario": "",
+    "supportedTypes": [
+      "tbsQuestion"
+}'
