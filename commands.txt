@@ -16,3 +16,14 @@ apksigner verify --print-certs my_app.apk
 #################### Find apk in folder and print certs
 
 find . -name "*.apk" -exec echo "APK: {}" \; -exec sh -c 'keytool -printcert -jarfile "{}" | grep SHA1' \;
+
+
+################## get list of big file in git repo
+https://medium.com/@prankulgarg/want-to-remove-large-files-blobs-from-git-history-permanently-4723e72a84e1
+
+git rev-list --objects --all \
+| git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' \
+| awk '/^blob/ {print substr($0,6)}' \
+| sort -r --numeric-sort --key=2 \
+| gcut --complement --characters=13-40 \
+| gnumfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
