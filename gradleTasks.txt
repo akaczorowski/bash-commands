@@ -2,6 +2,8 @@
 
 ./gradlew app:dependencies --configuration rcRuntimeClasspath > deps.txt  
 
+./gradlew :app:dependencies --configuration releaseRuntimeClasspath --no-daemon 2>&1 | grep -iE "androidx\.window" | sort -u | head -15
+
 
 
 # https://docs.gradle.org/current/userguide/viewing_debugging_dependencies.html
